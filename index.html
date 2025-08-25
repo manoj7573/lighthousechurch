@@ -92,43 +92,49 @@
       .nav-link { text-align: center; padding: 14px; width: 100%; }
     }
 
+
     /* ===== HERO ===== */
-    .site-header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding-top: 80px; /* offset for fixed nav */
-      text-align: center;
-      color: #fff;
-      background: 
-        linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.20) 100%),
-        url('./prayer.png') center/cover no-repeat;
-      background-attachment: fixed;
-    }
+.site-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* keeps hero text centered */
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  background: 
+    linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.20) 100%),
+    url('./prayer.png') center/cover no-repeat;
+  background-attachment: fixed;
+  padding: 0 20px; /* remove large padding, just keep side padding */
+}
 
-    @media (max-width: 768px) {
-      .site-header {
-        background-attachment: scroll; /* fix iOS bug */
-        padding-top: 70px;
-        background-position: top center;
-      }
-    }
+@media (max-width: 768px) {
+  .site-header {
+    background-attachment: scroll; /* iOS fix */
+    padding: 100px 16px 40px; /* extra top padding so nav doesn’t overlap */
+  }
+}
 
-    .hero {
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px 80px;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: clamp(1.8rem, 5vw, 3.5rem);
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-    .hero p { margin-bottom: 24px; font-size: 1rem; color: #e5e7eb; }
+.hero {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 3rem); /* slightly smaller for phones */
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.hero p {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #e5e7eb;
+}
+
 
     .scrolling-text {
       overflow: hidden; white-space: nowrap;
