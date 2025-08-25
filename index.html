@@ -29,27 +29,37 @@
     .site-header.scrolled .nav {
       background: rgba(0, 0, 0, 0.7);
     }
-    .site-header {
+   .site-header {
   position: relative;
-  min-height: 80vh;
+  min-height: 100vh; /* full height */
   display: grid;
   grid-template-rows: auto 1fr;
   color: #fff;
-  background:
+  background: 
     linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.20) 100%),
     url('./prayer.png') center/cover no-repeat;
+  background-attachment: fixed;
   isolation: isolate;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
-/* Optional: enhance mobile experience */
+/* 🔹 Mobile adjustments */
 @media (max-width: 768px) {
   .site-header {
-    background-attachment: scroll;
+    background-attachment: scroll; /* avoid mobile bug */
+    min-height: 100vh; /* take full screen */
+    background-position: top center; /* better focus */
+  }
+  .hero {
+    padding: 60px 20px 80px; /* reduce padding */
+  }
+  .hero h1 {
+    font-size: 1.8rem; /* smaller text */
+  }
+  .hero p {
+    font-size: 0.95rem;
   }
 }
+
 
 
     .nav {
@@ -354,3 +364,4 @@
   </script>
 </body>
 </html>
+
