@@ -120,32 +120,37 @@
       padding: 10px 12px;
       cursor: pointer;
     }
-@media (max-width: 480px) {
+/* Mobile Menu */
+@media (max-width: 860px) {
+  .nav {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
   .nav-menu {
+    width: 100%;                 /* full width */
+    flex-direction: column;      /* stack links */
+    background: rgba(10,15,25,.96);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.1);
+    margin-top: 12px;
+    overflow: hidden;
+    max-height: 0;               /* collapsed by default */
+    transition: max-height .35s ease;
+  }
+  .nav-menu.open {
+    max-height: 400px;           /* expand when open */
+  }
+  .nav-link {
     width: 100%;
-    left: 0;
-    right: 0;
+    padding: 14px;
+    text-align: center;
   }
 }
-    @media (max-width: 860px) {
-      .nav { padding: 12px 16px; }
-      .nav-toggle { display: inline-flex; }
-      .nav-menu {
-        position: absolute;
-        right: 16px; left: 16px;
-        top: 64px;
-        flex-direction: column;
-        background: rgba(10,15,25,.96);
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 16px;
-        padding: 10px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height .35s ease;
-      }
-      .nav-menu.open { max-height: 320px; }
-      .nav-link { width: 100%; padding: 12px 14px; }
-    }
+
 
     .hero {
       display: grid;
@@ -330,51 +335,27 @@
     </div>
   </footer>
 
-  <script>
-    const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('navMenu');
-    toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      menu.classList.toggle('open');
-    });
+ <script>
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
 
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', menu.classList.contains('open'));
+  });
+
+  // Close menu when clicking a link
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
       menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
-    }));
-
-    const nav = document.getElementById('topNav');
-    const onScroll = () => {
-      if (window.scrollY > 12) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-    };
-    document.addEventListener('scroll', onScroll); onScroll();
-
-    const sections = Array.from(document.querySelectorAll('header#home, section'));
-    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
-    const map = new Map();
-    sections.forEach(sec => {
-      const id = sec.getAttribute('id') || 'home';
-      const link = navLinks.find(l => l.getAttribute('href') === '#' + id);
-      if (link) map.set(sec, link);
     });
+  });
+</script>
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const link = map.get(entry.target);
-        if (!link) return;
-        if (entry.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-
-    sections.forEach(s => observer.observe(s));
-  </script>
 </body>
 </html>
+
 
 
 
