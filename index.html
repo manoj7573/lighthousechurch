@@ -26,13 +26,9 @@
       line-height: 1.6;
     }
 
-    /* ===== Sticky Header + Nav ===== */
-
-	
-	/* Darken on scroll */
-	.site-header.scrolled .nav {
-		background: rgba(0, 0, 0, 0.7); /* semi-transparent dark */
-	}
+    .site-header.scrolled .nav {
+      background: rgba(0, 0, 0, 0.7);
+    }
     .site-header {
       position: relative;
       min-height: 80vh;
@@ -95,7 +91,6 @@
     .nav-link:hover { background: rgba(255,255,255,.12); }
     .nav-link.active { background: rgba(255,255,255,.2); }
 
-    /* Mobile Menu */
     .nav-toggle {
       display: none;
       border: 1px solid rgba(255,255,255,.25);
@@ -126,7 +121,6 @@
       .nav-link { width: 100%; padding: 12px 14px; }
     }
 
-    /* ===== Hero ===== */
     .hero {
       display: grid;
       place-items: center;
@@ -142,7 +136,33 @@
     }
     .hero p { margin: 0 0 24px; font-size: 1.05rem; color: #e5e7eb; }
 
-    .cta-row { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    /* Scrolling Sentence */
+    .scrolling-text {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 100%;
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .scrolling-text span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 15s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .cta-row {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
       padding: 12px 18px; border-radius: 999px; font-weight: 600; text-decoration: none;
@@ -151,7 +171,6 @@
     .btn:hover { transform: translateY(-1px); }
     .btn.primary { background: linear-gradient(135deg, var(--brand-2), #e9c99a); color: #111; border: none; }
 
-    /* ===== Sections ===== */
     section { padding: 80px 20px; }
     .container { max-width: 1100px; margin: 0 auto; }
 
@@ -164,7 +183,6 @@
     }
     .sub { text-align: center; color: var(--muted); margin: 0 auto 36px; max-width: 700px; }
 
-    /* Schedule Cards */
     .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
     .card {
       grid-column: span 12;
@@ -182,7 +200,6 @@
       .card { grid-column: span 6; }
     }
 
-    /* Contact */
     .contact {
       background: linear-gradient(180deg,#fff, #f1f5f9);
       border: 1px solid #eef2f7;
@@ -193,7 +210,6 @@
     .contact p { margin: 8px 0; }
     .contact a { color: var(--brand); text-decoration: none; }
 
-    /* Footer */
     footer {
       background: rgba(10,15,25,.88);
       backdrop-filter: blur(6px);
@@ -215,16 +231,11 @@
 <body>
 
   <header class="site-header" id="home">
-	    <div class="scroll-banner">
-    <div class="scroll-text">
-      ✨ For my house shall be called a house of prayer for all peoples 🙏
-    </div>
-
     <nav class="nav" id="topNav">
       <a class="brand" href="#home" aria-label="Light House Church home">
         Light House <img src="lhlogo.png" alt="Light House Logo" style="height:32px; width:auto;" />
       </a>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">☰ Menu</button>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">? Menu</button>
       <ul class="nav-menu" id="navMenu">
         <li><a class="nav-link" href="#home">Home</a></li>
         <li><a class="nav-link" href="#schedule">Prayer Timings</a></li>
@@ -235,6 +246,12 @@
     <div class="hero">
       <div class="container">
         <h1>Welcome to Light House Church</h1>
+
+        <!-- Scrolling sentence -->
+        <div class="scrolling-text">
+          <span>"For my house shall be called a house of prayer for all peoples"</span>
+        </div>
+
         <p>Pastor: <strong>Devarapu David Raju</strong></p>
         <div class="cta-row">
           <a class="btn primary" href="#schedule">Join us this Sunday</a>
@@ -250,7 +267,6 @@
       <div class="container">
         <h2 class="section-title">Prayer Timings</h2>
         <p class="sub">We warmly welcome you to worship, learn, and grow together in faith.</p>
-
         <div class="grid">
           <div class="card"><div><strong>Sunday</strong> 9:00 AM – 11:00 AM<br/>Worship at LightHouse Amudalapalle</div><span class="badge">Sunday</span></div>
           <div class="card"><div><strong>Sunday</strong> 6:30 PM – 10:00 PM<br/>Worship at LightHouse Pedanindrakolanu</div><span class="badge">Sunday</span></div>
@@ -325,33 +341,5 @@
 
     sections.forEach(s => observer.observe(s));
   </script>
-	
 </body>
 </html>
-
-.scroll-banner {
-  width: 100%;
-  background-color: var(--brand-2); /* gold color */
-  color: #fff;
-  overflow: hidden;
-  white-space: nowrap;
-  font-weight: bold;
-  padding: 8px 0;
-  font-size: 1rem;
-  position: relative;
-  z-index: 100; /* on top of nav */
-}
-
-.scroll-text {
-  display: inline-block;
-  padding-left: 100%;
-  animation: scroll-left 15s linear infinite;
-}
-
-@keyframes scroll-left {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-
-
